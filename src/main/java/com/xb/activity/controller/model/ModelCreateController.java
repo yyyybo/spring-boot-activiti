@@ -16,6 +16,7 @@ import com.alibaba.druid.support.json.JSONUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.micrometer.core.instrument.util.JsonUtils;
 import org.activiti.editor.constants.ModelDataJsonConstants;
+import org.activiti.engine.RepositoryService;
 import org.activiti.engine.impl.util.json.JSONArray;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.activiti.engine.repository.Deployment;
@@ -30,10 +31,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +49,9 @@ public class ModelCreateController implements ModelDataJsonConstants {
 
     @Resource
     private ModelService modelService;
+
+    @Resource
+    private RepositoryService repositoryService;
 
     /**
      * 创建模型
@@ -72,4 +73,41 @@ public class ModelCreateController implements ModelDataJsonConstants {
         String resultJson = JSONUtils.toJSONString(resultMap);
         return resultJson;
     }
+
+    /**
+     * 创建模型
+     * test:先输入http://localhost:8080/ActivitiWorkFlowDemo/model/create
+     * 再输入：http://localhost:8080/ActivitiWorkFlowDemo/modeler.html?modelId=获取到的modelId
+     */
+    @RequestMapping("/export")
+    public String create(HttpServletResponse response, String modelId) {
+        BufferedOutputStream bos = null;
+        try {
+
+            try {
+                Model modelData = repositoryService.getModel(modelId);
+
+                byte[] bpmnBytes = repositoryService.getModelEditorSource(modelData.getId());
+
+                // 封装输出流
+                bos = new BufferedOutputStream(response.getOutputStream());
+                bos.write(bpmnBytes);// 写入流
+
+                String filename = modelData.getId() + ".bpmn20.xml";
+                response.setContentType("application/x-msdownload;");
+                response.setHeader("Content-Disposition", "attachment; filename=" + filename);
+                response.flushBuffer();
+
+            } finally {
+                bos.flush();
+                bos.close();
+            }
+
+        } catch (Exception e) {
+            System.out.println("流程下载失败");
+            e.printStackTrace();
+        }
+        return "成功";
+    }
+
 }

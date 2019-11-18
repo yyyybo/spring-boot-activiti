@@ -244,14 +244,22 @@
                 <includes>
                     <include>**/*</include>
                 </includes>
+                <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.woff2</exclude>
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
                 <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
                 <includes>
                     <include>application.yml</include>
                     <include>application-${profile.active}.yml</include>
+                    <include>**/*.woff</include>
+                    <include>**/*.woff2</include>
+                    <include>**/*.ttf</include>
                 </includes>
             </resource>
         </resources>
@@ -268,6 +276,27 @@
                     <delimiters>
                         <delimiter>@</delimiter>
                     </delimiters>
+                    <!-- 不添加此节点，编译时会修改损坏字体的二进制文件 -->
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filtering>true</filtering>
+                            <excludes>
+                                <exclude>**/*.woff</exclude>
+                                <exclude>**/*.woff2</exclude>
+                                <exclude>**/*.ttf</exclude>
+                            </excludes>
+                        </resource>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filtering>false</filtering>
+                            <includes>
+                                <include>**/*.woff</include>
+                                <include>**/*.woff2</include>
+                                <include>**/*.ttf</include>
+                            </includes>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>
