@@ -1,0 +1,355 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="path" type="apple"*/-->
+<head th:with="path=${path}">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>工作流平台</title>
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/plugins/images/favicon.png}">
+    <!-- Bootstrap Core CSS -->
+    <link th:href="@{/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link th:href="@{/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css}" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link th:href="@{/plugins/bower_components/chartist-js/dist/chartist.min.css}" rel="stylesheet">
+    <link th:href="@{/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css}" rel="stylesheet">
+    <!-- Vector CSS -->
+    <link th:href="@{/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css}" rel="stylesheet" />
+    <!-- animation CSS -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{css/style.css}" rel="stylesheet">
+    <!-- color CSS -->
+    <link th:href="@{css/colors/blue-dark.css}" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a class="logo" href="index.html">
+                        <!-- Logo icon image, you can use font-icon also --><b>
+                        <!--This is dark logo icon--><img th:src="@{/plugins/images/admin-logo.png}" alt="home" class="dark-logo" /><!--This is light logo icon--><img th:src="@{/plugins/images/admin-logo-dark.png}" alt="home" class="light-logo" />
+                     </b>
+                        <!-- Logo text image you can use text also --><span class="hidden-xs">
+                        <!--This is dark logo text--><img th:src="@{/plugins/images/admin-text.png}" alt="home" class="dark-logo" /><!--This is light logo text--><img th:src="@{/plugins/images/admin-text-dark.png}" alt="home" class="light-logo" />
+                     </span> </a>
+                </div>
+                <!-- /Logo -->
+                <!-- Search input and Toggle icon -->
+                <ul class="nav navbar-top-links navbar-left">
+                    <li><a href="javascript:void(0)" class="open-close waves-effect waves-light visible-xs"><i class="ti-close ti-menu"></i></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"> <i class="mdi mdi-gmail"></i>
+                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                        </a>
+                        <ul class="dropdown-menu mailbox animated bounceInDown">
+                            <li>
+                                <div class="drop-title">你有4条新消息</div>
+                            </li>
+                            <li>
+                                <div class="message-center">
+                                    <a href="#">
+                                        <div class="user-img"> <img th:src="@{/plugins/images/users/pawandeep.jpg}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                        <div class="mail-contnet">
+                                            <h5>南京亚朵酒店项目申报</h5> <span class="mail-desc">项目上会请审批</span> <span class="time">9:30 AM</span> </div>
+                                    </a>
+                                    <a href="#">
+                                        <div class="user-img"> <img th:src="@{/plugins/images/users/sonu.jpg}" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                        <div class="mail-contnet">
+                                            <h5>北京金融街酒店项目申报</h5> <span class="mail-desc">项目上会请审批</span> <span class="time">9:10 AM</span> </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="text-center" href="javascript:void(0);"> <strong>进入我的待办列表</strong> <i class="fa fa-angle-right"></i> </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-messages -->
+                    </li>
+
+                    <!-- .Megamenu -->
+                    <li class="mega-dropdown"> <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><span class="hidden-xs">Mega</span> <i class="icon-options-vertical"></i></a>
+                        <ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
+                            <li class="col-sm-3">
+                                <ul>
+                                    <li class="dropdown-header">工作流配置</li>
+                                    <li><a href="index.shtml">工作流管理</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- /.Megamenu -->
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img th:src="@{/plugins/images/users/varun.jpg}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">莫问</b><span class="caret"></span> </a>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+                            <li>
+                                <div class="dw-user-box">
+                                    <div class="u-img"><img th:src="@{/plugins/images/users/varun.jpg}" alt="user" /></div>
+                                    <div class="u-text">
+                                        <h4>Steave Jobs</h4>
+                                        <p class="text-muted">varun@gmail.com</p><a href="index.shtml" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav slimscrollsidebar">
+                <div class="sidebar-head">
+                    <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">工作流平台</span></h3>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li> <a href="#" class="waves-effect"><i class="mdi mdi-settings fa-fw"></i> <span class="hide-menu">工作流配置<span class="fa arrow"></span></span></a>
+                        <ul class="treeview-menu">
+                            <li><a href="bpmn/add.shtml" class="waves-effect"><i class="ti-desktop fa-fw"></i><span class="hide-menu">工作流管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">工作流平台</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
+                        <a href="javascript:void(0)" target="_blank" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">立即进入工作流管理</a>
+                        <ol class="breadcrumb">
+                            <li><a href="index.shtml">工作流平台</a></li>
+                            <li class="active">首页</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- Other sales widgets -->
+                <!-- ============================================================== -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">已办任务</h3>
+                            <ul class="list-inline two-part">
+                                <li><i class="icon-people text-info"></i></li>
+                                <li class="text-right"><span class="counter">23</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">待办任务</h3>
+                            <ul class="list-inline two-part">
+                                <li><i class="icon-folder text-purple"></i></li>
+                                <li class="text-right"><span class="counter">169</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">执行中任务</h3>
+                            <ul class="list-inline two-part">
+                                <li><i class="icon-folder-alt text-danger"></i></li>
+                                <li class="text-right"><span class="">311</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">运行中流程</h3>
+                            <ul class="list-inline two-part">
+                                <li><i class="ti-wallet text-success"></i></li>
+                                <li class="text-right"><span class="">117</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- Demo table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">用户管理</div>
+                            <div class="table-responsive">
+                                <table class="table table-hover manage-u-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 70px">#</th>
+                                            <th>姓名</th>
+                                            <th>账号</th>
+                                            <th>邮箱</th>
+                                            <th>创建时间</th>
+                                            <th style="width: 250px">权限分类</th>
+                                            <th style="width: 300px">管理</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td><span class="font-medium">莫问</span></td>
+                                            <td>yibo.yu</td>
+                                            <td>yibo.yu@163.com.com</td>
+                                            <td>2019-11-24 14:06:00</td>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option>超级管理员</option>
+                                                    <option>普通用户</option>
+                                                    <option>临时用户</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i class="ti-key"></i></button>
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i class="icon-trash"></i></button>
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5"><i class="ti-pencil-alt"></i></button>
+                                                <button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-20"><i class="ti-upload"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <div class="right-sidebar">
+                    <div class="slimscrollright">
+                        <div class="rpanel-title"> 选择更换主题 <span><i class="ti-close right-side-toggle"></i></span> </div>
+                        <div class="r-panel-body">
+                            <ul id="themecolors" class="m-t-20">
+                                <li><b>With Light sidebar</b></li>
+                                <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                                <li><a href="javascript:void(0)" data-theme="gray" class="yellow-theme">3</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
+                                <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                                <li class="full-width"><b>With Dark sidebar</b></li>
+                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                                <li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme working">10</a></li>
+                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme">12</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">BPMN在线画图</div>
+                            <div class="content-wrapper">
+                                <!-- BPMN画图 -->
+                                <section class="content">
+                                    <iframe scrolling="yes" frameborder="0"
+                                            style="width: 100%; min-height: 600px; overflow: visible; background: #fff;"
+                                            src="bpmn/add.shtml"  id="main" name="main">
+                                    </iframe>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2019 &copy; 工作流平台 by 莫问 </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+
+<!--    <div class="col-md-12">-->
+<!--        <div id="ct-city-wth"></div>-->
+<!--    </div>-->
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script th:src="@{/plugins/bower_components/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script th:src="@{/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js}"></script>
+    <!--Counter js -->
+    <script th:src="@{/plugins/bower_components/waypoints/lib/jquery.waypoints.js}"></script>
+    <script th:src="@{/plugins/bower_components/counterup/jquery.counterup.min.js}"></script>
+    <!--slimscroll JavaScript -->
+    <script th:src="@{/js/jquery.slimscroll.js}"></script>
+    <!--Wave Effects -->
+    <script th:src="@{/js/waves.js}"></script>
+    <!-- chartist chart -->
+    <script th:src="@{/plugins/bower_components/chartist-js/dist/chartist.min.js}"></script>
+    <script th:src="@{/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js}"></script>
+    <!-- sparkline chart JavaScript -->
+    <script th:src="@{/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js}"></script>
+    <script th:src="@{/plugins/bower_components/jquery-sparkline/jquery.charts-sparkline.js}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script th:src="@{/js/custom.min.js}"></script>
+    <script th:src="@{/js/dashboard3.js}"></script>
+    <!--Style Switcher -->
+    <script th:src="@{/plugins/bower_components/styleswitcher/jQuery.style.switcher.js}"></script>
+</body>
+
+</html>

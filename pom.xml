@@ -16,6 +16,7 @@
     </parent>
 
     <properties>
+
         <activiti.version>5.22.0</activiti.version>
 
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
@@ -27,6 +28,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <!-- activiti 工作流引擎依赖 -->
             <dependency>
                 <groupId>org.activiti</groupId>
@@ -50,13 +52,6 @@
                 <artifactId>activiti-spring-boot-starter-rest-api</artifactId>
                 <version>${activiti.version}</version>
             </dependency>
-
-            <!-- Activiti 在线设计 -->
-<!--            <dependency>-->
-<!--                <groupId>org.activiti</groupId>-->
-<!--                <artifactId>activiti-diagram-rest</artifactId>-->
-<!--                <version>${activiti.model.version}</version>-->
-<!--            </dependency>-->
 
             <!-- mysql -->
             <dependency>

@@ -17,5 +17,7 @@ spring:
     username: root
     password: 123456
   thymeleaf:
-    mode: LEGACYHTML5
+    mode: HTML
     cache: false
+  mvc:
+    static-path-pattern: /**

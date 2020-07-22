@@ -2,7 +2,7 @@
 <configuration>
     <!--<property resource="sys.properties" />-->
     <!--项目名称，用于log名的前缀-->
-    <property name="PROJECT_NAME" value="hlm-web" />
+    <property name="PROJECT_NAME" value="activiti-web" />
     <!--控制台日志-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoder 默认配置为PatternLayoutEncoder -->
@@ -129,8 +129,8 @@
 
     <logger name="org.springframework" level="INFO" />
     <logger name="org.apache" level="INFO" />
-    <logger name="org.apache.ibatis" level="DEBUG" />
-    <logger name="com.atour" level="DEBUG" />
+    <logger name="org.apache.ibatis" level="INFO" />
+    <logger name="com.xb" level="INFO" />
 
     <!--关于springProfile就不要更改了.如果自己实在有需要.就新建一个profile.比如自己的名字.然后建立相关的application-XXX.yml即可-->
     <root level="INFO">
