@@ -4,7 +4,7 @@ spring:
   application:
     name: @artifactId@-@profile.active@
   activiti:
-    check-process-definitions: true # 自动检查、部署流程定义文件【检查Activiti数据表是否存在及版本号是否匹配】默认为true，自动创建好表之后设为false。设为false会取消自动部署功能。
+    check-process-definitions: false # 自动检查、部署流程定义文件【检查Activiti数据表是否存在及版本号是否匹配】默认为true，自动创建好表之后设为false。设为false会取消自动部署功能。
     database-schema-update: true #自动更新数据库结构
     history-level: full #保存历史数据级别设置为full最高级别，便于历史数据的追溯 保存历史数据的最高级别，除了会保存audit级别的数据外，还会保存其他全部流程相关的细节数据，包括一些流程参数等
     #process-definition-location-prefix: classpath:/processes/ #流程定义文件存放目录
@@ -15,7 +15,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/activiti_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: 123456
+    password: 12345678
   thymeleaf:
     mode: HTML
     cache: false

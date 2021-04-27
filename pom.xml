@@ -17,7 +17,7 @@
 
     <properties>
 
-        <activiti.version>5.22.0</activiti.version>
+        <activiti.version>6.0.0</activiti.version>
 
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
