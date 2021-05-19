@@ -1,14 +1,17 @@
 package com.xb.activity.controller;
 
+import com.codahale.metrics.Timer;
 import com.xb.activity.biz.ProcessBiz;
 import com.xb.activity.dto.FlowOrder;
 import com.xb.activity.param.ApplyFlow;
+import com.xb.monitor.BMonitor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Random;
 
 /**
  * 流程管理Ø
@@ -34,6 +37,17 @@ public class ProgressController {
      */
     @PostMapping("apply")
     public FlowOrder apply(@Valid @RequestBody ApplyFlow applyFlow) {
+        BMonitor.meter("xiao_test.error");
+
+        Timer.Context xiao_test = BMonitor.timer("xiao_test");
+        try {
+            Random random = new Random();
+            int num = random.nextInt(1000 - 50) + 50 + 1;
+            Thread.sleep(Long.parseLong(String.valueOf(num)));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        xiao_test.stop();
         return processBiz.apply(applyFlow);
     }
 }
